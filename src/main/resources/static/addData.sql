@@ -5,6 +5,9 @@ insert into Users (user_id, email, password, firstname, lastname, is_active, is_
 insert into Users (user_id, email, password, firstname, lastname, is_active, is_admin) VALUES
     (3, 'zyx1', 'zyx1', 'yx1', 'z1', b'1', b'1');
 
+insert into Users (user_id, email, password, firstname, lastname, is_active, is_admin) VALUES
+    (4, 'zyx2', 'zyx2', 'yx2', 'z2', b'0', b'0');
+
 insert into category (category_id, name) VALUES (1, 'Dota2');
 insert into category (category_id, name) VALUES (2, 'Java');
 insert into category (category_id, name) VALUES (3, 'C++');

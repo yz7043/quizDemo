@@ -34,6 +34,10 @@ public class LoginService {
             model.addAttribute("error", "Credential wrong");
             return null;
         }
+        if(!found.getIs_active()){
+            model.addAttribute("error", "You account has been suspend");
+            return null;
+        }
         return found;
     }
 }
