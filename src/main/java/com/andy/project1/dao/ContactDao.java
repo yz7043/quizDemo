@@ -36,7 +36,7 @@ public class ContactDao {
                 contact.getSubject(),
                 contact.getMessage(),
                 contact.getEmail(),
-                contact.getTimestamp()
+                contact.getTime()
         );
     }
 }

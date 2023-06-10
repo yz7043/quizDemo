@@ -46,6 +46,9 @@ public class UserDao {
         );
     }
 
+    /*
+    * We cannot update email
+    * */
     public int updateUser(User user){
         String query = "UPDATE Users SET password = ?, lastname = ?, firstname = ?, is_active = ?, is_admin = ? " +
                 "WHERE user_id = ?";
