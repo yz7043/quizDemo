@@ -27,9 +27,13 @@ public class Quiz {
     }
 
     public void setTime_end(Timestamp time){
-        Instant instant = time.toInstant();
-        Instant truncatedInstant = instant.truncatedTo(ChronoUnit.SECONDS);
-        this.time_end = Timestamp.from(truncatedInstant);
+        if(time == null)
+            this.time_end = null;
+        else{
+            Instant instant = time.toInstant();
+            Instant truncatedInstant = instant.truncatedTo(ChronoUnit.SECONDS);
+            this.time_end = Timestamp.from(truncatedInstant);
+        }
     }
 
     public Quiz(Integer quiz_id, Integer user_id, Integer category_id, String name, Timestamp time_start, Timestamp time_end) {

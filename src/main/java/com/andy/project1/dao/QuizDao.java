@@ -62,4 +62,9 @@ public class QuizDao {
         String sql = "DELETE FROM Quiz WHERE quiz_id = ?";
         return jdbcTemplate.update(sql, id);
     }
+
+    public List<Quiz> getQuizByUserId(Integer id){
+        String sql = "SELECT * FROM Quiz WHERE user_id = ?";
+        return jdbcTemplate.query(sql, quizRowMapper, id);
+    }
 }

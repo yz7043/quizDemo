@@ -30,7 +30,7 @@ public class LoginController {
             User user = (User) session.getAttribute(Constant.LOGIN_SESSION_KEY);
             model.addAttribute(Constant.IS_LOGIN, true);
             model.addAttribute(Constant.IS_ADMIN, user.getIs_admin());
-            return "redirect:/quiz";
+            return "redirect:/home";
         }
         return "login";
     }
@@ -50,7 +50,7 @@ public class LoginController {
             newSession.setAttribute(Constant.LOGIN_SESSION_KEY, user);
             model.addAttribute(Constant.IS_LOGIN, true);
             model.addAttribute(Constant.IS_ADMIN, user.getIs_admin());
-            return "redirect:/quiz";
+            return "redirect:/home";
         }
     }
 

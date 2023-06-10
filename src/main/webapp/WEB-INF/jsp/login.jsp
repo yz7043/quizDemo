@@ -22,6 +22,9 @@
     <c:if test="${not empty error}">
         <small style="color: red">${error}</small>
     </c:if>
+    <c:if test="${not empty alertMsg}">
+        <script>alert('${alertMsg}');</script>
+    </c:if>
 </div>
 </body>
 </html>

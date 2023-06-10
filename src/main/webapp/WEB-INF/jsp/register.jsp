@@ -5,7 +5,7 @@
     <title>Register</title>
 </head>
 <body>
-<%@ include file="loggedOutNavbar.jsp"%>
+<%@ include file="navbar.jsp"%>
 <div>
     <form method="post" action="/register">
         <div>
@@ -32,9 +32,6 @@
     </form>
     <c:if test="${not empty error}">
         <small style="color: red">${error}</small>
-    </c:if>
-    <c:if test="${not empty alertMsg}">
-        <script>alert('${alertMsg}');</script>
     </c:if>
 </div>
 </body>
