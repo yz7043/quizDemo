@@ -18,6 +18,6 @@ public class QuizRowMapper implements RowMapper<Quiz> {
         quiz.setName(rs.getString("name"));
         quiz.setTime_start(rs.getTimestamp("time_start"));
         quiz.setTime_end(rs.getTimestamp("time_end"));
-        return null;
+        return quiz;
     }
 }

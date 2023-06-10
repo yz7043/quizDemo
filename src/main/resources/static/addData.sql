@@ -1,5 +1,7 @@
 insert into Users (user_id, email, password, firstname, lastname, is_active, is_admin) VALUES
     (1, 'admin@gmail.com', 'admin', 'admin_first', 'admin_last', b'1', b'1');
+insert into Users (user_id, email, password, firstname, lastname, is_active, is_admin) VALUES
+    (2, 'zyx@gmail.com', 'zyx', 'yx', 'z', b'1', b'0');
 
 insert into category (category_id, name) VALUES (1, 'Dota2');
 

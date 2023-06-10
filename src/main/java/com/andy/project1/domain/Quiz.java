@@ -10,7 +10,6 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class Quiz {
@@ -30,6 +29,17 @@ public class Quiz {
     public void setTime_end(Timestamp time){
         Instant instant = time.toInstant();
         Instant truncatedInstant = instant.truncatedTo(ChronoUnit.SECONDS);
-        this.time_start = Timestamp.from(truncatedInstant);
+        this.time_end = Timestamp.from(truncatedInstant);
+    }
+
+    public Quiz(Integer quiz_id, Integer user_id, Integer category_id, String name, Timestamp time_start, Timestamp time_end) {
+        this.quiz_id = quiz_id;
+        this.user_id = user_id;
+        this.category_id = category_id;
+        this.name = name;
+        Instant instant = time_start.toInstant();
+        this.time_start = Timestamp.from(instant.truncatedTo(ChronoUnit.SECONDS));
+        instant = time_end.toInstant();
+        this.time_end = Timestamp.from(instant.truncatedTo(ChronoUnit.SECONDS));
     }
 }
