@@ -4,6 +4,7 @@ package com.andy.project1.controller.user;
 import com.andy.project1.domain.Category;
 import com.andy.project1.domain.Quiz;
 import com.andy.project1.domain.User;
+import com.andy.project1.domain.util.QuizScore;
 import com.andy.project1.service.category.CategoryService;
 import com.andy.project1.service.quiz.QuizService;
 import com.andy.project1.util.Constant;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,10 +46,12 @@ public class HomeController {
             model.addAttribute(Constant.ONGOING_QUIZ, ongointQuiz);
                 // 1.3 get test result
             List<Quiz> historyQuiz = quizService.getQuizHistory(user.getUser_id());
-            model.addAttribute(Constant.HISTORY_QUIZ, historyQuiz);
-                // 1.4 cal historical score
             List<Float> historyScore = historyQuiz.stream().map(quiz -> quizService.getScores(quiz)).collect(Collectors.toList());
-            model.addAttribute(Constant.HISTORY_SCORE, historyScore);
+            List<QuizScore> quizScores = new LinkedList<>();
+            for(int i = 0; i < historyQuiz.size(); i++){
+                quizScores.add(new QuizScore(historyQuiz.get(i), historyScore.get(i)));
+            }
+            model.addAttribute(Constant.HISTORY_QUIZ, quizScores);
         } else {
             // 2. if it is admin
         }

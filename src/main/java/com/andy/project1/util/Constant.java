@@ -10,6 +10,5 @@ public class Constant {
     // home page quiz
     public static final String ONGOING_QUIZ = "ongoingQuiz";
     public static final String HISTORY_QUIZ = "historyQuiz";
-    public static final String HISTORY_SCORE = "historyScore";
     public static final String ALL_CATEGORIES = "allCategories";
 }

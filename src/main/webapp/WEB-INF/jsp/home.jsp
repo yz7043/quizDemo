@@ -46,8 +46,9 @@
             <table>
                 <c:forEach items="${historyQuiz}" var="quiz">
                     <tr>
-                        <td>${quiz.getName()}</td>
-                        <td>${quiz.getTime_end()}</td>
+                        <td>${quiz.getQuiz().getName()}</td>
+                        <td>${quiz.getQuiz().getTime_end()}</td>
+                        <td>Score: ${quiz.getScore()}</td>
                         <td><a>Result</a></td>
                     </tr>
                 </c:forEach>

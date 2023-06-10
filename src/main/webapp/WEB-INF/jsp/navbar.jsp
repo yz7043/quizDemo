@@ -44,6 +44,7 @@
         <a href="/contact">Contact us</a>
     </c:if>
     <c:if test="${not empty isLogin and isLogin}">
+        <a href="/home">Home</a>
         <a href="/contact">Contact us</a>
         <a href="/quiz">New Quiz</a>
         <a href="/quizresult">Quiz Result</a>
