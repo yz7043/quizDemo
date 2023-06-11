@@ -1,5 +1,7 @@
 package com.andy.project1.util;
 
+import org.springframework.data.relational.core.sql.In;
+
 public class Constant {
     public static final String LOGIN_SESSION_KEY = "user";
 
@@ -44,4 +46,7 @@ public class Constant {
     // Question admin management
     public static final String ADMIN_QUESTION_MGMT_QUESTIONS = "adminQuestionMgmtQuestions";
     public static final String ADMIN_QUESTION_MGMT_CATEGORIES = "adminQuestionMgmtCategories";
+
+    public static final Integer ADMIN_ADD_QUESTION_NUMBER = 4;
+    public static final String ADMIN_ADD_QUESTION_NUMBER_STR = "adminAddQuestionNumber";
 }

@@ -20,7 +20,7 @@
 <%@ include file="navbar.jsp"%>
 <div>
     <h1>Categories</h1>
-    <button>Add one category</button>
+<%--    <button>Add one category</button>--%>
     <table>
         <c:forEach items="${adminQuestionMgmtCategories}" var="category">
         <tr>
@@ -32,6 +32,7 @@
 </div>
 <div>
     <h1>Add a question</h1>
+    <button><a href="/adminAddQuestion">Add Question</a></button>
 </div>
 <div>
     <h1>Question banks</h1>

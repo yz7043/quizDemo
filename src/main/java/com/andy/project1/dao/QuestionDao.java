@@ -4,8 +4,12 @@ import com.andy.project1.dao.rowmapper.QuestionRowMapper;
 import com.andy.project1.domain.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.List;
 
 @Repository
@@ -60,5 +64,20 @@ public class QuestionDao {
     public int deleteQuestionById(Integer id){
         String sql = "DELETE FROM Question WHERE question_id = ?";
         return jdbcTemplate.update(sql, id);
+    }
+
+    public int addQuestionAndGetId(Question question){
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        String sql = "INSERT INTO Question (category_id, description, is_active) VALUES (?, ?, ?)";
+        jdbcTemplate.update(
+                con -> {
+                    PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    ps.setInt(1, question.getCategory_id());
+                    ps.setString(2, question.getDescription());
+                    ps.setBoolean(3, question.getIs_active());
+                    return ps;
+                }, keyHolder
+        );
+        return keyHolder.getKey().intValue();
     }
 }

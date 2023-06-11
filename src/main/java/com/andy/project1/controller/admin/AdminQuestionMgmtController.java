@@ -16,12 +16,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.HttpRequestHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class AdminQuestionMgmtController {
@@ -67,5 +69,40 @@ public class AdminQuestionMgmtController {
         List<Category> allCategory = categoryService.getAllCategory();
         model.addAttribute(Constant.ADMIN_QUESTION_MGMT_QUESTIONS, allQuestions);
         model.addAttribute(Constant.ADMIN_QUESTION_MGMT_CATEGORIES, allCategory);
+    }
+
+    @GetMapping("/adminAddQuestion")
+    public String getAdminAddQuestion(@RequestParam Map<String, String> allParams,
+                                      HttpServletRequest request, Model model){
+        User user = HttpSessionHelper.getSessionUser(request);
+        if(user == null || !user.getIs_admin()){
+            return "redirect:/home";
+        }
+        HttpSessionHelper.addUserInfoToModel(user, model);
+        List<Category> allCategory = categoryService.getAllCategory();
+        model.addAttribute(Constant.ADMIN_QUESTION_MGMT_CATEGORIES, allCategory);
+        model.addAttribute(Constant.ADMIN_ADD_QUESTION_NUMBER_STR, Constant.ADMIN_ADD_QUESTION_NUMBER);
+        if(allParams.get(Constant.ALERT_MSG) != null)
+            model.addAttribute(Constant.ALERT_MSG, allParams.get(Constant.ALERT_MSG));
+        return "adminAddQuestion";
+    }
+
+    @PostMapping("/adminAddQuestion")
+    public String postAdminAddQuestion(@RequestParam Map<String,String> allParams,
+                                       HttpServletRequest request, Model model){
+        User user = HttpSessionHelper.getSessionUser(request);
+        if(user == null || !user.getIs_admin()){
+            return "redirect:/home";
+        }
+        System.out.println(allParams);
+        System.out.println(allParams.get("category"));
+        HttpSessionHelper.addUserInfoToModel(user, model);
+        model.addAttribute(Constant.ADMIN_ADD_QUESTION_NUMBER_STR, Constant.ADMIN_ADD_QUESTION_NUMBER);
+        BSResult bsResult = adminQuestionMgmtService.addQuestion(allParams);
+        if(bsResult.getSuccess()){
+            return "redirect:/adminQuestionMgmt";
+        }else {
+            return "redirect:/adminAddQuestion?"+Constant.ALERT_MSG+"="+bsResult.getMsg();
+        }
     }
 }
