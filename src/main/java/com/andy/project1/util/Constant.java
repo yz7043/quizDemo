@@ -32,4 +32,7 @@ public class Constant {
 
     // Contact admin management
     public static final String ADMIN_CONTACT_LIST = "adminContactList";
+
+    // User admin management
+    public static final String ADMIN_USER_LIST = "adminUserList";
 }

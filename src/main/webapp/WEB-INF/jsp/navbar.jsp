@@ -47,7 +47,7 @@
         <c:choose>
             <c:when test="${not empty isAdmin and isAdmin}">
                 <a href="/adminhome">Home</a>
-                <a>User Management</a>
+                <a href="/adminUserMgmt">User Management</a>
                 <a>Quiz Result Management</a>
                 <a>Quiz Management</a>
                 <a href="/adminContactManagement">Contact Management</a>

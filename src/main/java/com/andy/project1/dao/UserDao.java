@@ -21,6 +21,11 @@ public class UserDao {
         this.userRowMapper = userRowMapper;
     }
 
+    public List<User> getAllUser(){
+        String query = "SELECT * FROM Users";
+        return jdbcTemplate.query(query, userRowMapper);
+    }
+
     public User getUserById(Integer id){
         String query = "SELECT * FROM Users WHERE user_id = ?";
         List<User> result = jdbcTemplate.query(query, userRowMapper, id);
