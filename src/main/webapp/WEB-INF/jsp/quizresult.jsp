@@ -15,7 +15,7 @@ ${loggedUser.getFirstname()}&nbsp;${loggedUser.getLastname()}
 <h2>Test End Time</h2>
 ${quizResEndTime}
 <h2>Result of the Test</h2>
-    ${quizResScore}<c:choose><c:when test="${quizResScore < 60.0}">Fail</c:when><c:otherwise>Pass</c:otherwise></c:choose>
+    You score: ${quizResScore} &nbsp; (<c:choose><c:when test="${quizResScore < 3}">Fail</c:when><c:otherwise>Pass</c:otherwise></c:choose>)
 <h2>Result Details</h2>
     <form>
         <table>
@@ -31,6 +31,7 @@ ${quizResEndTime}
                                        id="choice${status.index}${choiceStatus.index}"
                                        name="question${status.index}"
                                        value="${choice.getDescription()}"
+
                                     ${question.getQuizQuestion().getUser_choice_id() == choice.getChoice_id() ? 'checked' : ''}
                                        disabled
                                 >

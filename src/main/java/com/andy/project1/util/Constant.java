@@ -20,4 +20,13 @@ public class Constant {
 
     public static final String QUIZ_RES_SCORE = "quizResScore";
 
+    // quiz page
+    public static final String QUIZ_QUESTION = "quizQuestion";
+
+    public static final String QUIZ_SUBMIT_QUESTION_PREFIX = "questionId"; // 0 based
+
+    public static final String QUIZ_SUBMIT_CHOICE_PREFIX = "question"; // 1 based
+    public static final Integer QUIZ_POOL_SIZE = 5;
+    public static final String QUIZ_CATEGORY = "quizCategory";
+    public static final String QUIZ_START_TIME = "quizStartTime";
 }

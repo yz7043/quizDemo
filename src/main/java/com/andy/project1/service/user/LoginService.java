@@ -26,7 +26,7 @@ public class LoginService {
             return null;
         }
         if(isEnterTextEmpty(password)){
-            model.addAttribute("error", "Username is empty");
+            model.addAttribute("error", "Password is empty");
             return null;
         }
         User found = userDao.getUserByEmail(email);

@@ -34,4 +34,10 @@ public class CategoryDao {
         String query = "DELETE FROM Category WHERE category_id = ?";
         return jdbcTemplate.update(query, id);
     }
+
+    public Category getCategoryById(int id){
+        String query = "SELECT * FROM Category WHERE category_id = ?";
+        List<Category> found = jdbcTemplate.query(query, categoryRowMapper, id);
+        return found.size() == 0 ? null : found.get(0);
+    }
 }

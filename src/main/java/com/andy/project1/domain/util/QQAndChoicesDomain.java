@@ -18,4 +18,10 @@ public class QQAndChoicesDomain {
     private QuizQuestion quizQuestion;
     private List<Choice> choices;
     private Question question;
+
+    public void removeCorrectChoice(){
+        for(Choice choice : choices){
+            choice.setIs_correct(false);
+        }
+    }
 }

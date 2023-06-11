@@ -36,7 +36,7 @@ public class QuizResultController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formattedTimestamp = sdf.format(quizResult.getQuiz().getTime_end());
         // get score
-        float scores = quizService.getScores(quizResult.getQuiz());
+        int scores = quizService.getScores(quizResult.getQuiz());
         model.addAttribute(Constant.QUIZ_RES, quizResult);
         model.addAttribute(Constant.LOGGED_USER, loggedUser);
         model.addAttribute(Constant.QUIZ_RES_END_TIME, formattedTimestamp);

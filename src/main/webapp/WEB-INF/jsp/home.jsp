@@ -23,7 +23,7 @@
             <h1>Choose one category</h1>
             <ul>
             <c:forEach items="${allCategories}" var="categories">
-                <li><a>${categories.getName()}</a></li>
+                <li><a href="/quiz?category_id=${categories.getCategory_id()}">${categories.getName()}</a></li>
             </c:forEach>
             </ul>
         </div>
@@ -50,7 +50,7 @@
                         <td>${quiz.getQuiz().getTime_end()}</td>
                         <td>Score:
                             <c:choose>
-                                <c:when test="${quiz.getScore() < 60.0}">Fail</c:when>
+                                <c:when test="${quiz.getScore() < 3}">Fail</c:when>
                                 <c:otherwise>Pass</c:otherwise>
                             </c:choose>
                         </td>
@@ -64,6 +64,8 @@
         <div>I am Admin</div>
     </c:otherwise>
 </c:choose>
-
+<c:if test="${not empty alertMsg}">
+    <script>alert('${alertMsg}');</script>
+</c:if>
 </body>
 </html>

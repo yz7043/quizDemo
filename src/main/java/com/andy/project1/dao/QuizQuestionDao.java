@@ -32,7 +32,7 @@ public class QuizQuestionDao {
 
     public int addQuizQuestion(QuizQuestion quizQuestion){
         String sql = "INSERT INTO QuizQuestion (quiz_id, question_id, user_choice_id) VALUES" +
-                "(?, ?, ?, ?)";
+                "(?, ?, ?)";
         return jdbcTemplate.update(
                 sql,
                 quizQuestion.getQuiz_id(),

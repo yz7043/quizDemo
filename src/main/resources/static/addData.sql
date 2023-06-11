@@ -106,7 +106,7 @@ insert into Choice (choice_id, question_id, description, is_correct) VALUES (38,
 insert into quiz (quiz_id, user_id, category_id, name, time_start, time_end) VALUES
     (1, 2, 1, 'Dota test 1', CURRENT_TIMESTAMP()-INTERVAL 1 HOUR, CURRENT_TIMESTAMP()-INTERVAL 30 MINUTE );
 insert into quiz (quiz_id, user_id, category_id, name, time_start, time_end) VALUES
-    (2, 2, 3, 'C++ test 1', CURRENT_TIMESTAMP()-INTERVAL 20 MINUTE , null );
+    (2, 2, 3, 'C++ test 1', CURRENT_TIMESTAMP()-INTERVAL 20 MINUTE , CURRENT_TIMESTAMP()-INTERVAL 10 MINUTE );
 # Quiz Question
     # Dota
 insert into quizquestion (qq_id, quiz_id, question_id, user_choice_id) VALUES (1, 1, 1, 1);

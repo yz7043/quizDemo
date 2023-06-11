@@ -12,5 +12,5 @@ import lombok.ToString;
 @ToString
 public class QuizScore {
     Quiz quiz;
-    Float score;
+    Integer score;
 }

@@ -46,7 +46,7 @@ public class HomeController {
             model.addAttribute(Constant.ONGOING_QUIZ, ongointQuiz);
                 // 1.3 get test result
             List<Quiz> historyQuiz = quizService.getQuizHistory(user.getUser_id());
-            List<Float> historyScore = historyQuiz.stream().map(quiz -> quizService.getScores(quiz)).collect(Collectors.toList());
+            List<Integer> historyScore = historyQuiz.stream().map(quiz -> quizService.getScores(quiz)).collect(Collectors.toList());
             List<QuizScore> quizScores = new LinkedList<>();
             for(int i = 0; i < historyQuiz.size(); i++){
                 quizScores.add(new QuizScore(historyQuiz.get(i), historyScore.get(i)));

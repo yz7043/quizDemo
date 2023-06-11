@@ -14,9 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static com.andy.project1.util.Constant.QUIZ_POOL_SIZE;
 
 @Service
 public class QuizService {
@@ -36,7 +37,7 @@ public class QuizService {
     public List<Choice> getChoiceByQuestionId(Integer id){
         return choiceDao.getChoicesByQuestionId(id);
     }
-    public float getScores(Quiz quiz){
+    public int getScores(Quiz quiz){
         List<QuizQuestion> quizQuestions = quizQuestionDao.getQuizQuestionByQuizId(quiz.getQuiz_id());
         int len = quizQuestions.size();
         int correctNum = 0;
@@ -55,7 +56,7 @@ public class QuizService {
             }
             if(isCorrect) correctNum ++;
         }
-        return correctNum * 100.0f / len;
+        return correctNum;
     }
 
     public List<Quiz> getQuizHistory(Integer id){
@@ -87,5 +88,40 @@ public class QuizService {
             );
         }
         return new QuizQuestionDomain(curQuiz, qqAndChoicesDomains);
+    }
+
+    public QuizQuestionDomain createQuiz(Integer categoryId){
+        // Select random Question
+        List<Question> questionPool = questionDao.getQuestionsByCategory(categoryId);
+        Set<Integer> indexSet = new HashSet<>();
+        Random randomGen = new Random();
+        for(int i = 0; i < QUIZ_POOL_SIZE; i++){
+            int nextRandom = randomGen.nextInt(questionPool.size());
+            while (indexSet.contains(nextRandom)){
+                nextRandom = randomGen.nextInt(questionPool.size());
+            }
+            indexSet.add(nextRandom);
+        }
+        // Create a QuizQuesitonDomain for return
+        // We first don't support retaken ongoing quiz
+        QuizQuestionDomain result = new QuizQuestionDomain();
+        result.setQuestions(new LinkedList<>());
+        for(Integer index : indexSet){
+            Question question = questionPool.get(index);
+            List<Choice> choices = choiceDao.getChoicesByQuestionId(question.getQuestion_id());
+            List<QQAndChoicesDomain> qqQuestions = result.getQuestions();
+            qqQuestions.add(new QQAndChoicesDomain(null, choices, question));
+            qqQuestions.get(qqQuestions.size() - 1).removeCorrectChoice();
+        }
+        return result;
+    }
+
+    public Integer addAQuiz(Quiz q){
+        return quizDao.addQuizAndGetID(q);
+    }
+
+    public boolean addAQuizQuestion(QuizQuestion quizQuestion){
+        int result = quizQuestionDao.addQuizQuestion(quizQuestion);
+        return result > 0;
     }
 }
