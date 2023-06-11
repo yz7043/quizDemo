@@ -54,6 +54,7 @@ public class HomeController {
             model.addAttribute(Constant.HISTORY_QUIZ, quizScores);
         } else {
             // 2. if it is admin
+            return "redirect:/adminhome";
         }
         return "/home";
     }

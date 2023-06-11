@@ -7,6 +7,6 @@
 </head>
 <body>
 <%@ include file="navbar.jsp"%>
-Admin Home !
+<h1>Admin Page</h1>
 </body>
 </html>

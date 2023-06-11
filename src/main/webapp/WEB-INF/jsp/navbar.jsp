@@ -55,7 +55,7 @@
             <c:otherwise>
                 <a href="/home">Home</a>
                 <a href="/contactus">Contact us</a>
-                <a href="/quiz">New Quiz</a>
+<%--                <a href="/quiz">New Quiz</a>--%>
             </c:otherwise>
         </c:choose>
             <a href="/logout">Logout</a>

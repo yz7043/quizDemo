@@ -33,6 +33,7 @@ public class ContactController {
         if(user != null){
             LoggedUser loggedUser = new LoggedUser(user);
             model.addAttribute(Constant.LOGGED_USER, loggedUser);
+            HttpSessionHelper.addUserInfoToModel(user, model);
         }
         return "contact";
     }
@@ -49,6 +50,7 @@ public class ContactController {
         if(user != null){
             LoggedUser loggedUser = new LoggedUser(user);
             model.addAttribute(Constant.LOGGED_USER, loggedUser);
+            HttpSessionHelper.addUserInfoToModel(user, model);
         }
         Contact constant = new Contact(null, email, subject, message, Timestamp.from(Instant.now()));
         boolean success = contactService.addContact(constant);

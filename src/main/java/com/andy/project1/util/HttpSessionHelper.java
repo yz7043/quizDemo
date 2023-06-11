@@ -1,6 +1,7 @@
 package com.andy.project1.util;
 
 import com.andy.project1.domain.User;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,5 +14,10 @@ public class HttpSessionHelper {
             user = (User) session.getAttribute(Constant.LOGIN_SESSION_KEY);
         }
         return user;
+    }
+
+    public static void addUserInfoToModel(User user, Model model){
+        model.addAttribute(Constant.IS_LOGIN, true);
+        model.addAttribute(Constant.IS_ADMIN, user.getIs_admin());
     }
 }
