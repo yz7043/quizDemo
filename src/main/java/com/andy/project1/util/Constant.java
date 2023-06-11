@@ -40,4 +40,8 @@ public class Constant {
     public static final String ADMIN_QUIZ_RESULT = "adminQuizList";
     public static final String ADMIN_QUIZ_RESULT_BY_CATEGORY = "adminQuizResultByCategory";
     public static final String ADMIN_QUIZ_RESULT_BY_USER = "adminQuizResultByUser";
+
+    // Question admin management
+    public static final String ADMIN_QUESTION_MGMT_QUESTIONS = "adminQuestionMgmtQuestions";
+    public static final String ADMIN_QUESTION_MGMT_CATEGORIES = "adminQuestionMgmtCategories";
 }

@@ -21,7 +21,7 @@
 ```
 # TODO
 1. Reminder TODO
-- [ ] change CategoryDaoTest
+- [ ] need to prevent start quiz where the question pool size < 5
 
 2. Future TODO
 - [ ] export database

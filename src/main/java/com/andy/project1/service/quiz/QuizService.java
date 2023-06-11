@@ -91,6 +91,7 @@ public class QuizService {
     }
 
     public QuizQuestionDomain createQuiz(Integer categoryId){
+        // TODO: need to forbid create test if Question pool size < 5
         // Select random Question
         List<Question> questionPool = questionDao.getQuestionsByCategory(categoryId);
         Set<Integer> indexSet = new HashSet<>();

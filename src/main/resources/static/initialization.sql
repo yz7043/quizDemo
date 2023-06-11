@@ -29,7 +29,7 @@ create table Users(
 
 create table Category(
     category_id int primary key auto_increment,
-    name varchar(50)
+    name varchar(50) unique not null
 );
 
 create table Quiz(
