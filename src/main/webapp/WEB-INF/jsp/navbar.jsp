@@ -50,7 +50,7 @@
                 <a>User Management</a>
                 <a>Quiz Result Management</a>
                 <a>Quiz Management</a>
-                <a>Contact Management</a>
+                <a href="/adminContactManagement">Contact Management</a>
             </c:when>
             <c:otherwise>
                 <a href="/home">Home</a>

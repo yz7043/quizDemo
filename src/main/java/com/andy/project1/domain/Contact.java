@@ -1,5 +1,6 @@
 package com.andy.project1.domain;
 
+import com.andy.project1.util.TimestampHelper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Contact {
     private String email;
     private Timestamp time;
     public void setTime(Timestamp time) {
+        if(time == null) return;
         Instant instant = time.toInstant();
         Instant truncatedInstant = instant.truncatedTo(ChronoUnit.SECONDS);
         this.time = Timestamp.from(truncatedInstant);
@@ -32,4 +34,12 @@ public class Contact {
         Instant instant = time.toInstant();
         this.time = Timestamp.from(instant.truncatedTo(ChronoUnit.SECONDS));
     }
+
+    public String getTimeFormatString(){
+        return TimestampHelper.timeStampToFormatData(time);
+    }
+
+    public static final Integer SUBJECT_MAX_LEN = 200;
+    public static final Integer MSG_MAX_LEN = 2000;
+    public static final Integer EMAIL_MAX_LEN = 50;
 }

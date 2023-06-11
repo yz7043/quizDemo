@@ -1,5 +1,6 @@
 package com.andy.project1.domain;
 
+import com.andy.project1.util.TimestampHelper;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -45,5 +46,13 @@ public class Quiz {
         this.time_start = Timestamp.from(instant.truncatedTo(ChronoUnit.SECONDS));
         instant = time_end.toInstant();
         this.time_end = Timestamp.from(instant.truncatedTo(ChronoUnit.SECONDS));
+    }
+
+    public String getTimeStartFormatString(){
+        return TimestampHelper.timeStampToFormatData(this.time_start);
+    }
+
+    public String getTimeEndFormatString(){
+        return TimestampHelper.timeStampToFormatData(this.time_end);
     }
 }

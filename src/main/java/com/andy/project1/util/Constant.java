@@ -29,4 +29,7 @@ public class Constant {
     public static final Integer QUIZ_POOL_SIZE = 5;
     public static final String QUIZ_CATEGORY = "quizCategory";
     public static final String QUIZ_START_TIME = "quizStartTime";
+
+    // Contact admin management
+    public static final String ADMIN_CONTACT_LIST = "adminContactList";
 }
