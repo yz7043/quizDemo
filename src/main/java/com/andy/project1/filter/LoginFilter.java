@@ -21,7 +21,6 @@ public class LoginFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        System.out.println("In LoginFilter");
         HttpSession session = request.getSession(false);
 
         if (session != null && session.getAttribute(Constant.LOGIN_SESSION_KEY) != null) {

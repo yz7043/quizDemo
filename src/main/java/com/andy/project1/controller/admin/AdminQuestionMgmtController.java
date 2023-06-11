@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -94,8 +92,6 @@ public class AdminQuestionMgmtController {
         if(user == null || !user.getIs_admin()){
             return "redirect:/home";
         }
-        System.out.println(allParams);
-        System.out.println(allParams.get("category"));
         HttpSessionHelper.addUserInfoToModel(user, model);
         model.addAttribute(Constant.ADMIN_ADD_QUESTION_NUMBER_STR, Constant.ADMIN_ADD_QUESTION_NUMBER);
         BSResult bsResult = adminQuestionMgmtService.addQuestion(allParams);
