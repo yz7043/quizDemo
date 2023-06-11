@@ -1,5 +1,5 @@
 insert into Users (user_id, email, password, firstname, lastname, is_active, is_admin) VALUES
-    (1, 'admin@gmail.com', 'admin', 'admin_first', 'admin_last', b'1', b'1');
+    (1, 'admin', 'admin', 'admin_first', 'admin_last', b'1', b'1');
 insert into Users (user_id, email, password, firstname, lastname, is_active, is_admin) VALUES
     (2, 'zyx', 'zyx', 'yx', 'z', b'1', b'0');
 insert into Users (user_id, email, password, firstname, lastname, is_active, is_admin) VALUES

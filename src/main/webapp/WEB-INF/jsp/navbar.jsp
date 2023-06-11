@@ -44,12 +44,21 @@
         <a href="/contactus">Contact us</a>
     </c:if>
     <c:if test="${not empty isLogin and isLogin}">
-        <a href="/home">Home</a>
-        <a href="/contactus">Contact us</a>
-        <a href="/quiz">New Quiz</a>
-        <a href="/quizresult">Quiz Result</a>
-        <a href="/admin">Admin</a>
-        <a href="/logout">Logout</a>
+        <c:choose>
+            <c:when test="${not empty isAdmin and isAdmin}">
+                <a href="/adminhome">Home</a>
+                <a>User Management</a>
+                <a>Quiz Result Management</a>
+                <a>Quiz Management</a>
+                <a>Contact Management</a>
+            </c:when>
+            <c:otherwise>
+                <a href="/home">Home</a>
+                <a href="/contactus">Contact us</a>
+                <a href="/quiz">New Quiz</a>
+            </c:otherwise>
+        </c:choose>
+            <a href="/logout">Logout</a>
     </c:if>
 </div>
 
