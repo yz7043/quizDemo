@@ -36,7 +36,7 @@ public class RegisterController {
         BSResult result = registerService.register(request);
         if(result.getSuccess()){
             // success
-            model.addAttribute("alertMsg", "Register Successful");
+            model.addAttribute(Constant.ALERT_MSG, "Register Successful");
             return "/register";
         }else {
             // fail

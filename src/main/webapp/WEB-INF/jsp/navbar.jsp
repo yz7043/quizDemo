@@ -41,11 +41,11 @@
     <c:if test="${empty isLogin or not isLogin}">
         <a href="/login">Login</a>
         <a href="/register">Register</a>
-        <a href="/contact">Contact us</a>
+        <a href="/contactus">Contact us</a>
     </c:if>
     <c:if test="${not empty isLogin and isLogin}">
         <a href="/home">Home</a>
-        <a href="/contact">Contact us</a>
+        <a href="/contactus">Contact us</a>
         <a href="/quiz">New Quiz</a>
         <a href="/quizresult">Quiz Result</a>
         <a href="/admin">Admin</a>

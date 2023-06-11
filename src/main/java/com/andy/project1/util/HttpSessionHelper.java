@@ -8,7 +8,10 @@ import javax.servlet.http.HttpSession;
 public class HttpSessionHelper {
     public static User getSessionUser(HttpServletRequest request){
         HttpSession session = request.getSession(false);
-        User user = (User) session.getAttribute(Constant.LOGIN_SESSION_KEY);
+        User user = null;
+        if(session != null && session.getAttribute(Constant.LOGIN_SESSION_KEY) != null){
+            user = (User) session.getAttribute(Constant.LOGIN_SESSION_KEY);
+        }
         return user;
     }
 }
