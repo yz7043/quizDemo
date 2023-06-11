@@ -97,7 +97,7 @@ public class QuizService {
         Random randomGen = new Random();
         for(int i = 0; i < QUIZ_POOL_SIZE; i++){
             int nextRandom = randomGen.nextInt(questionPool.size());
-            while (indexSet.contains(nextRandom)){
+            while (indexSet.contains(nextRandom) || !questionPool.get(nextRandom).getIs_active()){
                 nextRandom = randomGen.nextInt(questionPool.size());
             }
             indexSet.add(nextRandom);
