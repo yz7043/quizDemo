@@ -2,7 +2,6 @@ package com.andy.project1.filter;
 
 
 import com.andy.project1.util.Constant;
-import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;

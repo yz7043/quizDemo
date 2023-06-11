@@ -48,7 +48,7 @@
             <c:when test="${not empty isAdmin and isAdmin}">
                 <a href="/adminhome">Home</a>
                 <a href="/adminUserMgmt">User Management</a>
-                <a>Quiz Result Management</a>
+                <a href="/adminQuizResultMgmt">Quiz Result Management</a>
                 <a>Quiz Management</a>
                 <a href="/adminContactManagement">Contact Management</a>
             </c:when>

@@ -35,6 +35,10 @@ public class QuizDao {
         return quizzes.size() == 0 ? null : quizzes.get(0);
     }
 
+    public List<Quiz> getQuizByCategoryId(Integer id){
+        String query = "SELECT * FROM Quiz WHERE category_id = ?";
+        return jdbcTemplate.query(query, quizRowMapper, id);
+    }
 
     @Deprecated
     public int addQuiz(Quiz quiz){

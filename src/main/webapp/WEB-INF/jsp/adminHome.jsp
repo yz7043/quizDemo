@@ -11,7 +11,7 @@
 <table>
     <tr>
         <td><button><a href="/adminUserMgmt">User Management</a></button></td>
-        <td><button><a>Quiz Result Management</a></button></td>
+        <td><button><a href="/adminQuizResultMgmt">Quiz Result Management</a></button></td>
         <td><button><a>Quiz Management</a></button></td>
         <td><button><a href="/adminContactManagement">Contact Management</a></button></td>
     </tr>

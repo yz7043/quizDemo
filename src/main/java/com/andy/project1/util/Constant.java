@@ -35,4 +35,9 @@ public class Constant {
 
     // User admin management
     public static final String ADMIN_USER_LIST = "adminUserList";
+
+    // Quiz result admin management
+    public static final String ADMIN_QUIZ_RESULT = "adminQuizList";
+    public static final String ADMIN_QUIZ_RESULT_BY_CATEGORY = "adminQuizResultByCategory";
+    public static final String ADMIN_QUIZ_RESULT_BY_USER = "adminQuizResultByUser";
 }
