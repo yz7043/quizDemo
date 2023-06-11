@@ -47,8 +47,15 @@ ${quizResEndTime}
             </c:forEach>
         </table>
     </form>
-
-    <button><a href="/home">Take Another Quiz</a></button>
+    
+    <c:choose>
+        <c:when test="${not empty isAdmin and isAdmin}">
+            <button><a href="/adminQuizResultMgmt">Back</a></button>
+        </c:when>
+        <c:otherwise>
+            <button><a href="/home">Take Another Quiz</a></button>
+        </c:otherwise>
+    </c:choose>
 </div>
 </body>
 </html>

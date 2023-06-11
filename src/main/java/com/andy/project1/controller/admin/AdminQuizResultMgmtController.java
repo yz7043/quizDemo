@@ -1,8 +1,8 @@
 package com.andy.project1.controller.admin;
 
-import com.andy.project1.domain.Quiz;
 import com.andy.project1.domain.User;
 import com.andy.project1.domain.admin.AdminQuizResult;
+import com.andy.project1.domain.util.QuizQuestionDomain;
 import com.andy.project1.service.admin.AdminQuizResultMgmtService;
 import com.andy.project1.service.quiz.QuizService;
 import com.andy.project1.util.Constant;
@@ -14,18 +14,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Timestamp;
-import java.util.Collections;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
 @Controller
 public class AdminQuizResultMgmtController {
     private final AdminQuizResultMgmtService adminQuizResultMgmtService;
+    private final QuizService quizService;
 
     @Autowired
-    public AdminQuizResultMgmtController(AdminQuizResultMgmtService adminQuizResultMgmtService) {
+    public AdminQuizResultMgmtController(AdminQuizResultMgmtService adminQuizResultMgmtService, QuizService quizService) {
         this.adminQuizResultMgmtService = adminQuizResultMgmtService;
+        this.quizService = quizService;
     }
 
     @GetMapping("/adminQuizResultMgmt")
@@ -41,6 +42,27 @@ public class AdminQuizResultMgmtController {
         List<AdminQuizResult> adminQuizResult = adminQuizResultMgmtService.getAdminQuizResult(params, request, model);
         model.addAttribute(Constant.ADMIN_QUIZ_RESULT, adminQuizResult);
         return "adminQuizResultMgmt";
+    }
+
+    @GetMapping("/adminQuizResultDetail")
+    public String getAdminQuizResultDetail(@RequestParam("quizId") Integer quizId,
+                                           HttpServletRequest request, Model model){
+        User user = HttpSessionHelper.getSessionUser(request);
+        if(user == null || !user.getIs_admin()){
+            return "redirect:/home";
+        }
+        HttpSessionHelper.addUserInfoToModel(user, model);
+        // get all choice and your choice
+        QuizQuestionDomain quizResult = quizService.getQuizResult(quizId);
+        // convert to time
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedTimestamp = sdf.format(quizResult.getQuiz().getTime_end());
+        // get score
+        int scores = quizService.getScores(quizResult.getQuiz());
+        model.addAttribute(Constant.QUIZ_RES, quizResult);
+        model.addAttribute(Constant.QUIZ_RES_END_TIME, formattedTimestamp);
+        model.addAttribute(Constant.QUIZ_RES_SCORE, scores);
+        return "quizresult";
     }
 
 }

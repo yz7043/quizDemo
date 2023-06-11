@@ -60,7 +60,7 @@
             </td>
             <td>${adminQuiz.getQuizQuestions().size()}</td>
             <td>${adminQuiz.getScore()}</td>
-            <td><button><a>Details</a></button></td>
+            <td><button><a href="/adminQuizResultDetail?quizId=${adminQuiz.getQuiz().getQuiz_id()}">Details</a></button></td>
         </tr>
     </c:forEach>
 </table>
