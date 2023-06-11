@@ -1,8 +1,10 @@
 package com.andy.project1.controller.quiz;
 
 import com.andy.project1.domain.User;
+import com.andy.project1.service.quiz.QuizService;
 import com.andy.project1.util.Constant;
 import com.andy.project1.util.HttpSessionHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

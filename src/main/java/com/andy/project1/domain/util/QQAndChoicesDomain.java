@@ -1,6 +1,7 @@
 package com.andy.project1.domain.util;
 
 import com.andy.project1.domain.Choice;
+import com.andy.project1.domain.Question;
 import com.andy.project1.domain.QuizQuestion;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.util.List;
 @Data
 @ToString
 public class QQAndChoicesDomain {
-    private QuizQuestion question;
+    private QuizQuestion quizQuestion;
     private List<Choice> choices;
+    private Question question;
 }

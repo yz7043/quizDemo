@@ -48,8 +48,13 @@
                     <tr>
                         <td>${quiz.getQuiz().getName()}</td>
                         <td>${quiz.getQuiz().getTime_end()}</td>
-                        <td>Score: ${quiz.getScore()}</td>
-                        <td><a>Result</a></td>
+                        <td>Score:
+                            <c:choose>
+                                <c:when test="${quiz.getScore() < 60.0}">Fail</c:when>
+                                <c:otherwise>Pass</c:otherwise>
+                            </c:choose>
+                        </td>
+                        <td><a href="/quizresult?quiz_id=${quiz.getQuiz().getQuiz_id()}">Result</a></td>
                     </tr>
                 </c:forEach>
             </table>

@@ -14,5 +14,10 @@ public class Constant {
     public static final String HISTORY_QUIZ = "historyQuiz";
     public static final String ALL_CATEGORIES = "allCategories";
 
+    // quiz result page
+    public static final String QUIZ_RES = "quizRes";
+    public static final String QUIZ_RES_END_TIME = "quizResEndTime";
+
+    public static final String QUIZ_RES_SCORE = "quizResScore";
 
 }

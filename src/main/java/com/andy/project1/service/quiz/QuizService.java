@@ -9,9 +9,12 @@ import com.andy.project1.domain.Question;
 import com.andy.project1.domain.Quiz;
 import com.andy.project1.domain.QuizQuestion;
 import com.andy.project1.domain.util.QQAndChoicesDomain;
+import com.andy.project1.domain.util.QuizQuestionDomain;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -70,5 +73,19 @@ public class QuizService {
             }
         }
         return ongoingQuiz;
+    }
+
+    public QuizQuestionDomain getQuizResult(Integer quizId){
+        Quiz curQuiz = quizDao.getQuizById(quizId);
+        List<QuizQuestion> quizQuestions = quizQuestionDao.getQuizQuestionByQuizId(quizId);
+        List<QQAndChoicesDomain> qqAndChoicesDomains = new ArrayList<>();
+        for(QuizQuestion quizQuestion : quizQuestions){
+            List<Choice> choices = choiceDao.getChoicesByQuestionId(quizQuestion.getQuestion_id());
+            Question question = questionDao.getQuestionById(quizQuestion.getQuestion_id());
+            qqAndChoicesDomains.add(
+                    new QQAndChoicesDomain(quizQuestion, choices, question)
+            );
+        }
+        return new QuizQuestionDomain(curQuiz, qqAndChoicesDomains);
     }
 }
