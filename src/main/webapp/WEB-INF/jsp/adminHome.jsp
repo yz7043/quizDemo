@@ -34,7 +34,7 @@
 <%@ include file="navbar.jsp"%>
 <div class="container main-content">
     <div class="row justify-content-center">
-        <div class="col-xl-12">
+        <div class="col-xl-12 center" style="margin-top: 20px;">
             <div class="card">
                 <div class="card-body text-center">
                     <h2 class="card-title">Admin Page</h2>

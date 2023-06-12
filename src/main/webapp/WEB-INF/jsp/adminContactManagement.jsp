@@ -38,36 +38,40 @@
 </head>
 <body>
 <%@ include file="navbar.jsp"%>
-<div class="content-container">
-<h1>Contact Management</h1>
-    <div class="col-md-12">
-    <table class="table able table-striped table-hover">
-    <c:forEach items="${adminContactList}" var="contact">
-        <thead>
-        <tr>
-            <th class="col-3">Subject</th>
-            <th class="col-3">Email</th>
-            <th class="col-2">Time</th>
-            <th class="col-4">Message</th>
-        </tr>
-        </thead>
-        <tr>
-            <td class="col-3">${contact.getSubject()}</td>
-            <td class="col-3">${contact.getEmail()}</td>
-            <td class="col-2">${contact.getTimeFormatString()}</td>
-            <td class="col-4">
-                <c:choose>
-                    <c:when test="${contact.getMessage().length() <= 50}">
-                        ${contact.getMessage()}
-                    </c:when>
-                    <c:otherwise>
-                        ${contact.getMessage().substring(0, 44)}<a href="/contactDetails?contact_id=${contact.getContact_id()}">...Show</a>
-                    </c:otherwise>
-                </c:choose>
-            </td>
-        </tr>
-    </c:forEach>
-    </table>
+<div class="container main-content">
+    <div class="row justify-content-center">
+        <div class="col-xl-12 center" style="margin-top: 20px;">
+        <h1>Contact Management</h1>
+            <div class="col-md-12">
+            <table class="table able table-striped table-hover">
+            <c:forEach items="${adminContactList}" var="contact">
+                <thead>
+                <tr>
+                    <th class="col-3">Subject</th>
+                    <th class="col-3">Email</th>
+                    <th class="col-2">Time</th>
+                    <th class="col-4">Message</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td class="col-3">${contact.getSubject()}</td>
+                    <td class="col-3">${contact.getEmail()}</td>
+                    <td class="col-2">${contact.getTimeFormatString()}</td>
+                    <td class="col-4">
+                        <c:choose>
+                            <c:when test="${contact.getMessage().length() <= 50}">
+                                ${contact.getMessage()}
+                            </c:when>
+                            <c:otherwise>
+                                ${contact.getMessage().substring(0, 44)}<a href="/contactDetails?contact_id=${contact.getContact_id()}">...Show</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                </tr>
+            </c:forEach>
+            </table>
+        </div>
+        </div>
     </div>
 </div>
 </body>
