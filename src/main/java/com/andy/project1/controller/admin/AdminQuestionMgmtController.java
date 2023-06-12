@@ -5,6 +5,7 @@ import com.andy.project1.domain.Category;
 import com.andy.project1.domain.Question;
 import com.andy.project1.domain.User;
 import com.andy.project1.domain.admin.AdminQuestion;
+import com.andy.project1.domain.admin.AdminQuestionChoice;
 import com.andy.project1.service.admin.AdminQuestionMgmtService;
 import com.andy.project1.service.category.CategoryService;
 import com.andy.project1.util.BSResult;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.StringReader;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -100,5 +103,32 @@ public class AdminQuestionMgmtController {
         }else {
             return "redirect:/adminAddQuestion?"+Constant.ALERT_MSG+"="+bsResult.getMsg();
         }
+    }
+
+    @GetMapping("/adminModifyQuestion")
+    public String getAdminModifyQuestion(@RequestParam("question_id") int id,
+                                         HttpServletRequest request, Model model){
+        User user = HttpSessionHelper.getSessionUser(request);
+        if(user == null || !user.getIs_admin()){
+            return "redirect:/home";
+        }
+        HttpSessionHelper.addUserInfoToModel(user, model);
+        // get question detail
+        AdminQuestionChoice questions = adminQuestionMgmtService.getQuestionForModify(id);
+        model.addAttribute(Constant.ADMIN_MODIFY_QUESTION, questions);
+        return "adminModifyQuestion";
+    }
+
+    @PostMapping ("/adminModifyQuestion")
+    public String postAdminModifyQuestion(@RequestParam Map<String, String> allParams,
+                                         HttpServletRequest request, Model model){
+        User user = HttpSessionHelper.getSessionUser(request);
+        if(user == null || !user.getIs_admin()){
+            return "redirect:/home";
+        }
+        HttpSessionHelper.addUserInfoToModel(user, model);
+        BSResult bsResult = adminQuestionMgmtService.doModifyQuestion(allParams);
+        System.out.println(bsResult);
+        return "redirect:/adminQuestionMgmt";
     }
 }

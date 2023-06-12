@@ -7,12 +7,15 @@ import com.andy.project1.domain.Category;
 import com.andy.project1.domain.Choice;
 import com.andy.project1.domain.Question;
 import com.andy.project1.domain.admin.AdminQuestion;
+import com.andy.project1.domain.admin.AdminQuestionChoice;
 import com.andy.project1.util.BSResult;
 import com.andy.project1.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -71,6 +74,7 @@ public class AdminQuestionMgmtService {
     private boolean isParamStringEmpty(String s){
         return s == null || s.isEmpty();
     }
+
     @Transactional
     public BSResult addQuestion(Map<String, String> allParams) {
         Integer categoryId = allParams.get("category") == null ? null : Integer.valueOf(allParams.get("category"));
@@ -108,6 +112,55 @@ public class AdminQuestionMgmtService {
                 choices[i - 1].setQuestion_id(newQuestionId);
                 choiceDao.addChoice(choices[i - 1]);
             }
+        }
+        return new BSResult(true, "Success");
+    }
+
+    public AdminQuestionChoice getQuestionForModify(int questionId){
+        Question question = questionDao.getQuestionById(questionId);
+        Category category = categoryDao.getCategoryById(question.getCategory_id());
+        List<Choice> choices = choiceDao.getChoicesByQuestionId(questionId);
+        return new AdminQuestionChoice(question, category, choices);
+    }
+
+    @Transactional
+    public BSResult doModifyQuestion(Map<String, String> allParams){
+        Integer questionId = allParams.get("questionId") == null ? null
+                : Integer.valueOf(allParams.get("questionId"));
+        String questionDescription = allParams.get("description");
+        Integer correctChoiceId = allParams.get("correctChoice") == null ? null
+                : Integer.valueOf(allParams.get("correctChoice"));
+        if(questionId == null){
+            return new BSResult(false, "The question id is invalid");
+        }
+        if(isParamStringEmpty(questionDescription)){
+            return new BSResult(false, "Question description shouldn't be empty");
+        }
+        if(correctChoiceId == null){
+            return new BSResult(false, "No correct choice has been selected");
+        }
+        Question question = questionDao.getQuestionById(questionId);
+        List<Choice> choices = choiceDao.getChoicesByQuestionId(questionId);
+        HashMap<Integer, Choice> choiceMap = new HashMap<>();
+        for(Choice choice : choices){
+            choiceMap.put(choice.getChoice_id(), choice);
+        }
+        for(Map.Entry<Integer, Choice> entry : choiceMap.entrySet()){
+            String choiceDesc = allParams.get("choice"+entry.getKey());
+            if(isParamStringEmpty(choiceDesc)){
+                return new BSResult(false, "No choice description can be empty");
+            }
+            entry.getValue().setDescription(choiceDesc);
+            entry.getValue().setIs_correct(entry.getKey() == correctChoiceId);
+        }
+        // update question
+        question.setDescription(questionDescription);
+        System.out.println(questionDescription);
+        questionDao.updateQuestion(question);
+        // update choice
+        for(Map.Entry<Integer, Choice> entry : choiceMap.entrySet()){
+            choiceDao.updateChoice(entry.getValue());
+            System.out.println(entry.getValue());
         }
         return new BSResult(true, "Success");
     }

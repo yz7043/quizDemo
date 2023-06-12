@@ -49,4 +49,7 @@ public class Constant {
 
     public static final Integer ADMIN_ADD_QUESTION_NUMBER = 4;
     public static final String ADMIN_ADD_QUESTION_NUMBER_STR = "adminAddQuestionNumber";
+
+    // Question modification admin
+    public static final String ADMIN_MODIFY_QUESTION = "adminModifyQuestion";
 }

@@ -59,7 +59,7 @@
                 </c:choose>
             </td>
             <td>
-                <button>Edit</button>
+                <button><a href="/adminModifyQuestion?question_id=${question.getQuestion().getQuestion_id()}">Edit</a></button>
             </td>
             <td>
                 <button>
