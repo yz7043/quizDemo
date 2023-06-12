@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
-        /*table {*/
-        /*    border-collapse: collapse;*/
-        /*}*/
 
         td {
             border: 1px solid black;
@@ -53,7 +50,7 @@
                     <td><c:choose>
                         <c:when test="${user.getIs_admin()}">Admin</c:when>
                         <c:otherwise>
-                            <button class="btn-outline-primary"><a href="/adminUserToggleStatus?user_id=${user.getUser_id()}">Toggle</a></button>
+                            <button class="btn-outline-secondary"><a href="/adminUserToggleStatus?user_id=${user.getUser_id()}">Toggle</a></button>
                         </c:otherwise>
                         </c:choose>
                     </td>

@@ -16,7 +16,18 @@
             justify-content: center;
             align-items: center;
         }
-
+        .card{
+            width: 100%;
+        }
+        .btn {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            padding: 1rem 2rem;
+            width: 100%;
+        }
+        .card-body {
+            padding: 2rem;
+        }
     </style>
 </head>
 <body>

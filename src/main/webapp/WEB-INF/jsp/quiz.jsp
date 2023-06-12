@@ -83,7 +83,7 @@
         <input type="hidden" name="categoryId" value="${quizCategory.getCategory_id()}">
         <input type="hidden" name="categoryName" value="${quizCategory.getName()}">
         <input type="hidden" name="startTime" value="${quizStartTime}">
-        <input type="submit" value="Submit Quiz">
+        <input type="submit" value="Submit Quiz" class="btn btn-success">
     </form>
     </div>
 </div>

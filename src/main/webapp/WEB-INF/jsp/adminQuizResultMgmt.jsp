@@ -6,6 +6,8 @@
 <html>
 <head>
     <title>Quiz Result Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
         table {
             border-collapse: collapse;
@@ -15,55 +17,67 @@
             border: 1px solid black;
             padding: 8px;
         }
+        .main-content {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
 <%@ include file="navbar.jsp"%>
-<h1>Quiz result management</h1>
-<c:if test="${not empty adminQuizResultByCategory}">
-<div>
-    Filtered by Category: ${adminQuizResultByCategory.getName()}
-    <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
-</div>
-</c:if>
-<c:if test="${not empty adminQuizResultByUser}">
-<div>
-    Filtered by User: ${adminQuizResultByUser.getFirstname()}&nbsp;${adminQuizResultByUser.getLastname()}
-    <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
-</div>
-</c:if>
-<div>
-<%--    <%List<AdminQuizResult> obj = (List<AdminQuizResult>) request.getAttribute("adminQuizList");--%>
-<%--        System.out.println("=================");--%>
-<%--    System.out.println(obj);--%>
-<%--        System.out.println("=================");--%>
-<%--    %>--%>
-<table>
-    <thead>
-        <th>Taken time</th>
-        <th>Category</th>
-        <th>User Full Name</th>
-        <th>Number of Questions</th>
-        <th>Score</th>
-        <th>Details</th>
-    </thead>
-    <c:forEach items="${adminQuizList}" var="adminQuiz">
-        <tr>
-            <td>${adminQuiz.getQuiz().getTimeStartFormatString()}</td>
-            <td><a href="/adminQuizResultMgmt?category_id=${adminQuiz.getCategory().getCategory_id()}">
-                    ${adminQuiz.getCategory().getName()}</a>
-            </td>
-            <td>
-                <a href="/adminQuizResultMgmt?user_id=${adminQuiz.getUser().getUser_id()}">
-                    ${adminQuiz.getUser().getFirstname()}&nbsp;${adminQuiz.getUser().getLastname()}
-                </a>
-            </td>
-            <td>${adminQuiz.getQuizQuestions().size()}</td>
-            <td>${adminQuiz.getScore()}</td>
-            <td><button><a href="/adminQuizResultDetail?quizId=${adminQuiz.getQuiz().getQuiz_id()}">Details</a></button></td>
-        </tr>
-    </c:forEach>
-</table>
+<div class="container main-content">
+    <div class="row justify-content-center">
+        <div class="col-xl-12">
+        <h1 style="justify-content: center; align-items: center; display: flex">Quiz result management</h1>
+        <c:if test="${not empty adminQuizResultByCategory}">
+        <div>
+            Filtered by Category: ${adminQuizResultByCategory.getName()}
+            <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
+        </div>
+        </c:if>
+        <c:if test="${not empty adminQuizResultByUser}">
+        <div>
+            Filtered by User: ${adminQuizResultByUser.getFirstname()}&nbsp;${adminQuizResultByUser.getLastname()}
+            <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
+        </div>
+        </c:if>
+        <div>
+        <%--    <%List<AdminQuizResult> obj = (List<AdminQuizResult>) request.getAttribute("adminQuizList");--%>
+        <%--        System.out.println("=================");--%>
+        <%--    System.out.println(obj);--%>
+        <%--        System.out.println("=================");--%>
+        <%--    %>--%>
+        <table class="able table-striped table-hover">
+            <thead>
+                <th>Taken time</th>
+                <th>Category</th>
+                <th>User Full Name</th>
+                <th>Number of Questions</th>
+                <th>Score</th>
+                <th>Details</th>
+            </thead>
+            <c:forEach items="${adminQuizList}" var="adminQuiz">
+                <tr>
+                    <td>${adminQuiz.getQuiz().getTimeStartFormatString()}</td>
+                    <td><a href="/adminQuizResultMgmt?category_id=${adminQuiz.getCategory().getCategory_id()}">
+                            ${adminQuiz.getCategory().getName()}</a>
+                    </td>
+                    <td>
+                        <a href="/adminQuizResultMgmt?user_id=${adminQuiz.getUser().getUser_id()}">
+                            ${adminQuiz.getUser().getFirstname()}&nbsp;${adminQuiz.getUser().getLastname()}
+                        </a>
+                    </td>
+                    <td>${adminQuiz.getQuizQuestions().size()}</td>
+                    <td>${adminQuiz.getScore()}</td>
+                    <td><button class="btn-outline-secondary"><a href="/adminQuizResultDetail?quizId=${adminQuiz.getQuiz().getQuiz_id()}">Details</a></button></td>
+                </tr>
+            </c:forEach>
+        </table>
+        </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
