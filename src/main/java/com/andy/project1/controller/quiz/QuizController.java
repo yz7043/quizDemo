@@ -89,6 +89,6 @@ public class QuizController {
             // add quiz to db
             quizService.addAQuizQuestion(quizQuestion);
         }
-        return "redirect:/home";
+        return "redirect:/home?"+Constant.ALERT_MSG+"=Quiz%20Finished!";
     }
 }

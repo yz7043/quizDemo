@@ -13,12 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -33,7 +35,7 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String getHome(HttpServletRequest request, Model model) {
+    public String getHome(@RequestParam Map<String, String> params, HttpServletRequest request, Model model) {
         User user = HttpSessionHelper.getSessionUser(request);
         model.addAttribute(Constant.IS_LOGIN, true);
         model.addAttribute(Constant.IS_ADMIN, user.getIs_admin());
@@ -62,6 +64,9 @@ public class HomeController {
         } else {
             // 2. if it is admin
             return "redirect:/adminhome";
+        }
+        if(params.get(Constant.ALERT_MSG) != null){
+            model.addAttribute(Constant.ALERT_MSG, params.get(Constant.ALERT_MSG));
         }
         return "/home";
     }
