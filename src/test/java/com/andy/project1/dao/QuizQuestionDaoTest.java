@@ -2,7 +2,6 @@ package com.andy.project1.dao;
 
 import com.andy.project1.dao.rowmapper.QuizQuestionMapper;
 import com.andy.project1.domain.*;
-import com.sun.javafx.geom.transform.GeneralTransform3D;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
