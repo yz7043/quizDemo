@@ -53,6 +53,7 @@
                     <%--                <a href="/quiz">New Quiz</a>--%>
                 </c:otherwise>
             </c:choose>
+            <a href="/logout">Logout</a>--%>
         </c:when>
         <c:otherwise>
                 <a href="/login">Login</a>
@@ -60,7 +61,6 @@
                 <a href="/contactus">Contact us</a>
         </c:otherwise>
     </c:choose>
-    <a href="/logout">Logout</a>--%>
 </div>
 
 </body>

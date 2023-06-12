@@ -29,6 +29,12 @@
         button[type="submit"] {
             margin-top: 20px;
         }
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -37,6 +43,7 @@
     <div class="card">
         <form method="post" action="/contactus">
             <h5>Your Email</h5>
+            <div class="form-group">
             <c:choose>
                 <c:when test="${not empty loggedUser}">
                     <input type="text" name="email" value="${loggedUser.getEmail()}" readonly class="form-control">
@@ -45,11 +52,18 @@
                     <input type="text" name="email" maxlength="50" class="form-control">
                 </c:otherwise>
             </c:choose>
+            </div>
             <h5>Please enter a subject (no more than 200 characters)</h5>
-            <input type="text" name="subject" maxlength="200" class="form-control">
+            <div class="form-group">
+                <input type="text" name="subject" maxlength="200" class="form-control">
+            </div>
             <h5>Please leave your message (no more than 2000 characters)</h5>
-            <textarea name="message" rows="4" cols="200" style="overflow-y: scroll;" maxlength="2000" class="form-control"></textarea>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <textarea name="message" rows="4" cols="200" style="overflow-y: scroll;" maxlength="2000" class="form-control"></textarea>
+            </div>
+            <div class="center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
             <c:if test="${not empty alertMsg}">
                 <script>alert('${alertMsg}');</script>
             </c:if>
