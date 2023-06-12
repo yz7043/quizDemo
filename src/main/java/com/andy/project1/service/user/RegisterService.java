@@ -3,7 +3,6 @@ package com.andy.project1.service.user;
 import com.andy.project1.dao.UserDao;
 import com.andy.project1.domain.User;
 import com.andy.project1.util.BSResult;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

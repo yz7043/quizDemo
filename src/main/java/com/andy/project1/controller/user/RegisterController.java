@@ -3,7 +3,6 @@ package com.andy.project1.controller.user;
 import com.andy.project1.service.user.RegisterService;
 import com.andy.project1.util.BSResult;
 import com.andy.project1.util.Constant;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

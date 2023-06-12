@@ -6,7 +6,6 @@ import com.andy.project1.service.admin.AdminUserMgmtService;
 import com.andy.project1.util.BSResult;
 import com.andy.project1.util.Constant;
 import com.andy.project1.util.HttpSessionHelper;
-import com.sun.org.apache.bcel.internal.generic.IUSHR;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
