@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.StringReader;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +68,12 @@ public class AdminQuestionMgmtController {
 
     private void getAllQuestions(Model model){
         List<AdminQuestion> allQuestions = adminQuestionMgmtService.getQuestionWithCategory();
+        Collections.sort(allQuestions, (q1, q2) ->
+        {
+            Integer categoryId1 = q1.getCategory().getCategory_id();
+            Integer categoryId2 = q2.getCategory().getCategory_id();
+            return categoryId1.compareTo(categoryId2);
+        });
         List<Category> allCategory = categoryService.getAllCategory();
         model.addAttribute(Constant.ADMIN_QUESTION_MGMT_QUESTIONS, allQuestions);
         model.addAttribute(Constant.ADMIN_QUESTION_MGMT_CATEGORIES, allCategory);
