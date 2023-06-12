@@ -14,7 +14,6 @@
             align-items: center;
             min-height: 100vh;
         }
-
         .card {
             width: 100%;
             max-width: 600px;

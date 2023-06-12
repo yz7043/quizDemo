@@ -46,7 +46,7 @@
                     <a href="/adminhome">Home</a>
                     <a href="/adminUserMgmt">User Management</a>
                     <a href="/adminQuizResultMgmt">Quiz Result Management</a>
-                    <a href="/adminQuestionMgmt">Quiz Management</a>
+                    <a href="/adminQuestionMgmt">Question Management</a>
                     <a href="/adminContactManagement">Contact Management</a>
                 </c:when>
                 <c:otherwise>

@@ -42,7 +42,7 @@
 <%@ include file="navbar.jsp"%>
 <div class="container main-content">
     <div class="row justify-content-center">
-        <div class="col-xl-12 center" style="margin-top: 50px;">
+        <div class="col-xl-12 center" style="margin-top: 20px;">
             <h1>Categories</h1>
             <div class="container">
                 <div class="row row-cols-3">
@@ -58,10 +58,10 @@
     <div class="col-xl-12 center" style="margin-top: 100px">
         <h1>Add a question</h1>
         <div class="center" style="margin-top: 20px">
-            <button class="btn btn-outline-primary"><a href="/adminAddQuestion">Add Question</a></button>
+            <a href="/adminAddQuestion"  class="btn btn-outline-primary">Add Question</a>
         </div>
     </div>
-    <div class="col-xl-12 center" style="margin-top: 100px">
+    <div class="col-xl-12 center" style="margin-top: 20px">
         <h1>Question banks</h1>
         <table class="table table-striped table-hover">
             <thead>
@@ -86,21 +86,15 @@
                     </c:choose>
                 </td>
                 <td>
-                    <button class="btn btn-outline-primary">
-                        <a href="/adminModifyQuestion?question_id=${question.getQuestion().getQuestion_id()}">Edit</a>
-                    </button>
+                    <a href="/adminModifyQuestion?question_id=${question.getQuestion().getQuestion_id()}" class="btn btn-outline-primary">Edit</a>
                 </td>
                 <td>
                     <c:choose>
                         <c:when test="${question.getQuestion().getIs_active()}">
-                            <button class="btn btn-outline-danger">
-                                <a href="/adminQuestionMgmtToggle?question_id=${question.getQuestion().getQuestion_id()}">Suspend</a>
-                            </button>
+                            <a href="/adminQuestionMgmtToggle?question_id=${question.getQuestion().getQuestion_id()}" class="btn btn-outline-danger">Suspend</a>
                         </c:when>
                         <c:otherwise>
-                            <button class="btn btn-outline-success">
-                                <a href="/adminQuestionMgmtToggle?question_id=${question.getQuestion().getQuestion_id()}">Enable</a>
-                            </button>
+                            <a href="/adminQuestionMgmtToggle?question_id=${question.getQuestion().getQuestion_id()}" class="btn btn-outline-success">Enable</a>
                         </c:otherwise>
                     </c:choose>
                 </td>
