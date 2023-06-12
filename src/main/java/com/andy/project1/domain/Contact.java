@@ -39,7 +39,7 @@ public class Contact {
         return TimestampHelper.timeStampToFormatData(time);
     }
 
-    public static final Integer SUBJECT_MAX_LEN = 200;
+    public static final Integer SUBJECT_MAX_LEN = 50;
     public static final Integer MSG_MAX_LEN = 2000;
     public static final Integer EMAIL_MAX_LEN = 50;
 }

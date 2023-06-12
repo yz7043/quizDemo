@@ -18,4 +18,8 @@ public class ContactService {
         int res = contactDao.addContact(contact);
         return res > 0;
     }
+
+    public Contact getContactById(Integer id){
+        return contactDao.getContactById(id);
+    }
 }

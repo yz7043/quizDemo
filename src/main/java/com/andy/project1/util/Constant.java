@@ -52,4 +52,6 @@ public class Constant {
 
     // Question modification admin
     public static final String ADMIN_MODIFY_QUESTION = "adminModifyQuestion";
+    // Contact detail
+    public static final String ADMIN_CONTACT_DETAIL = "adminContactDetail";
 }

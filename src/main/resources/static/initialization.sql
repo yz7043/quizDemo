@@ -11,7 +11,7 @@ DROP TABLE if exists Users;
 
 create table Contact(
     contact_id int primary key auto_increment,
-    subject varchar(200),
+    subject varchar(50),
     message varchar(2000),
     email varchar(50),
     time timestamp
