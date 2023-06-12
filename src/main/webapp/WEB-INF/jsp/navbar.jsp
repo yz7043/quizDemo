@@ -36,30 +36,31 @@
     </style>
 </head>
 <body>
-
 <div class="topnav">
-    <c:if test="${empty isLogin or not isLogin}">
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-        <a href="/contactus">Contact us</a>
-    </c:if>
-    <c:if test="${not empty isLogin and isLogin}">
-        <c:choose>
-            <c:when test="${not empty isAdmin and isAdmin}">
-                <a href="/adminhome">Home</a>
-                <a href="/adminUserMgmt">User Management</a>
-                <a href="/adminQuizResultMgmt">Quiz Result Management</a>
-                <a href="/adminQuestionMgmt">Quiz Management</a>
-                <a href="/adminContactManagement">Contact Management</a>
-            </c:when>
-            <c:otherwise>
-                <a href="/home">Home</a>
+    <c:choose>
+        <c:when test="${not empty isLogin and isLogin}">
+            <c:choose>
+                <c:when test="${not empty isAdmin and isAdmin}">
+                    <a href="/adminhome">Home</a>
+                    <a href="/adminUserMgmt">User Management</a>
+                    <a href="/adminQuizResultMgmt">Quiz Result Management</a>
+                    <a href="/adminQuestionMgmt">Quiz Management</a>
+                    <a href="/adminContactManagement">Contact Management</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/home">Home</a>
+                    <a href="/contactus">Contact us</a>
+                    <%--                <a href="/quiz">New Quiz</a>--%>
+                </c:otherwise>
+            </c:choose>
+        </c:when>
+        <c:otherwise>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
                 <a href="/contactus">Contact us</a>
-<%--                <a href="/quiz">New Quiz</a>--%>
-            </c:otherwise>
-        </c:choose>
-            <a href="/logout">Logout</a>
-    </c:if>
+        </c:otherwise>
+    </c:choose>
+    <a href="/logout">Logout</a>--%>
 </div>
 
 </body>
