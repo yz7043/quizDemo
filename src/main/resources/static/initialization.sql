@@ -29,7 +29,8 @@ create table Users(
 
 create table Category(
     category_id int primary key auto_increment,
-    name varchar(50) unique not null
+    name varchar(50) unique not null,
+    picture varchar(500) default 'https://www.slideteam.net/media/catalog/product/cache/1280x720/q/u/question_ppt_powerpoint_presentation_file_pictures_Slide01.jpg'
 );
 
 create table Quiz(

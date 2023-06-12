@@ -12,4 +12,5 @@ import lombok.ToString;
 public class Category {
     private Integer category_id;
     private String name;
+    private String picture;
 }

@@ -26,8 +26,13 @@ public class CategoryDao {
     }
 
     public int addCategory(Category category){
-        String query = "INSERT INTO Category (name) value (?)";
-        return jdbcTemplate.update(query, category.getName());
+        if(category.getPicture() == null){
+            String query = "INSERT INTO Category (name) value (?)";
+            return jdbcTemplate.update(query, category.getName());
+        }else{
+            String query = "INSERT INTO Category (name, picture) values (?, ?)";
+            return jdbcTemplate.update(query, category.getName(), category.getPicture());
+        }
     }
 
     public int deleteCategoryById(Integer id){

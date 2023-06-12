@@ -8,9 +8,9 @@ insert into Users (user_id, email, password, firstname, lastname, is_active, is_
 insert into Users (user_id, email, password, firstname, lastname, is_active, is_admin) VALUES
     (4, 'zyx2', 'zyx2', 'yx2', 'z2', b'0', b'0');
 
-insert into category (category_id, name) VALUES (1, 'Dota2');
-insert into category (category_id, name) VALUES (2, 'Java');
-insert into category (category_id, name) VALUES (3, 'C++');
+insert into category (category_id, name, picture) VALUES (1, 'Dota2', 'https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota2_social.jpg');
+insert into category (category_id, name, picture) VALUES (2, 'Java', 'https://www.developer.com/wp-content/uploads/2021/09/Java-tutorials.jpg');
+insert into category (category_id, name, picture) VALUES (3, 'C++', 'https://miro.medium.com/v2/resize:fit:1400/1*oFfl-1UKLtd8XOswpwgriA.png');
 # Dota question
 insert into Question (question_id, category_id, description, is_active) VALUES
     (1, 1, 'Can basic dispel dispel stun?', b'1');
