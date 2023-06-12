@@ -68,10 +68,10 @@
                     <tr>
                         <td>${quiz.getQuiz().getName()}</td>
                         <td>${quiz.getQuiz().getTime_end()}</td>
-                        <td>Score:
+                        <td>
                             <c:choose>
-                                <c:when test="${quiz.getScore() < 3}">Fail</c:when>
-                                <c:otherwise>Pass</c:otherwise>
+                                <c:when test="${quiz.getScore() < 3}"><div style="color: red">Fail</div></c:when>
+                                <c:otherwise><div style="color: #04AA6D">Pass</div></c:otherwise>
                             </c:choose>
                         </td>
                         <td><a href="/quizresult?quiz_id=${quiz.getQuiz().getQuiz_id()}">Result</a></td>
