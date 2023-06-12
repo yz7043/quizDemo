@@ -15,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,6 +48,11 @@ public class HomeController {
             model.addAttribute(Constant.ONGOING_QUIZ, ongointQuiz);
                 // 1.3 get test result
             List<Quiz> historyQuiz = quizService.getQuizHistory(user.getUser_id());
+            Collections.sort(historyQuiz, (q1, q2) -> {
+                Timestamp t1 = q1.getTime_start();
+                Timestamp t2 = q2.getTime_start();
+                return t2.compareTo(t1);
+            });
             List<Integer> historyScore = historyQuiz.stream().map(quiz -> quizService.getScores(quiz)).collect(Collectors.toList());
             List<QuizScore> quizScores = new LinkedList<>();
             for(int i = 0; i < historyQuiz.size(); i++){
