@@ -16,9 +16,7 @@
             justify-content: center;
             align-items: center;
         }
-        /*.card{*/
-        /*    max-width: 90%;*/
-        /*}*/
+
     </style>
 </head>
 <body>
