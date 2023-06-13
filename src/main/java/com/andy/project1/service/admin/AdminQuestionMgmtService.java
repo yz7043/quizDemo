@@ -139,6 +139,9 @@ public class AdminQuestionMgmtService {
         if(correctChoiceId == null){
             return new BSResult(false, "No correct choice has been selected");
         }
+        if(questionDescription.length() > Question.MAX_DESCRIPTION_LEN){
+            return new BSResult(false, "Question description length exceeds " + Question.MAX_DESCRIPTION_LEN);
+        }
         Question question = questionDao.getQuestionById(questionId);
         List<Choice> choices = choiceDao.getChoicesByQuestionId(questionId);
         HashMap<Integer, Choice> choiceMap = new HashMap<>();
@@ -149,6 +152,9 @@ public class AdminQuestionMgmtService {
             String choiceDesc = allParams.get("choice"+entry.getKey());
             if(isParamStringEmpty(choiceDesc)){
                 return new BSResult(false, "No choice description can be empty");
+            }
+            if(choiceDesc.length() > Choice.MAX_CHOICE_LEN){
+                return new BSResult(false, "Choice description length exceeds " + Question.MAX_DESCRIPTION_LEN);
             }
             entry.getValue().setDescription(choiceDesc);
             entry.getValue().setIs_correct(entry.getKey() == correctChoiceId);

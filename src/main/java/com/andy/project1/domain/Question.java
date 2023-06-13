@@ -14,4 +14,5 @@ public class Question {
     private Integer category_id;
     private String description;
     private Boolean is_active;
+    public static int MAX_DESCRIPTION_LEN = 1000;
 }

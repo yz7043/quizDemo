@@ -36,24 +36,12 @@
                         <a href="/quiz?category_id=${categories.getCategory_id()}"
                         class="col d-flex align-items-center justify-content-center">
                             <img src="${categories.getPicture()}" alt="${categories.getName()}" class="category-img border p-3">
+                            <div>${categories.getName()}</div>
                         </a>
                     </c:forEach>
                 </div>
             </div>
         </div>
-<%--        <div>--%>
-<%--            <h1>Here is your ongoing Quiz</h1>--%>
-<%--            <c:choose>--%>
-<%--                <c:when test="${not empty ongoingQuiz}">--%>
-
-<%--                    <a>${ongoingQuiz.getName()}</a>--%>
-<%--                </c:when>--%>
-<%--                <c:otherwise>--%>
-<%--                    No ongoing quiz!--%>
-<%--                </c:otherwise>--%>
-<%--            </c:choose>--%>
-
-<%--        </div>--%>
 
             <h1>Quiz History</h1>
         <div>

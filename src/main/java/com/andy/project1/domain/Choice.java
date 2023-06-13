@@ -14,4 +14,5 @@ public class Choice {
     private Integer question_id;
     private String description;
     private Boolean is_correct;
+    public static int MAX_CHOICE_LEN = 300;
 }
