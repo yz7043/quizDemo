@@ -30,30 +30,38 @@
 <div class="container main-content">
     <div class="row justify-content-center">
         <div class="col-xl-12">
-        <h1 style="justify-content: center; align-items: center; display: flex">Quiz result management</h1>
-        <c:if test="${not empty adminQuizResultByCategory}">
-        <div>
-            Filtered by Category: ${adminQuizResultByCategory.getName()}
-            <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
-        </div>
-        </c:if>
-        <c:if test="${not empty adminQuizResultByUser}">
-        <div>
-            Filtered by User: ${adminQuizResultByUser.getFirstname()}&nbsp;${adminQuizResultByUser.getLastname()}
-            <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
-        </div>
-        </c:if>
-        <div>
-        <%--    <%List<AdminQuizResult> obj = (List<AdminQuizResult>) request.getAttribute("adminQuizList");--%>
-        <%--        System.out.println("=================");--%>
-        <%--    System.out.println(obj);--%>
-        <%--        System.out.println("=================");--%>
-        <%--    %>--%>
+            <h1 style="justify-content: center; align-items: center; display: flex">Quiz result management</h1>
+            <c:if test="${not empty adminQuizResultByCategory}">
+                <div>
+                    Filtered by Category: ${adminQuizResultByCategory.getName()}
+                    <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
+                </div>
+            </c:if>
+            <c:if test="${not empty adminQuizResultByUser}">
+                <div>
+                    Filtered by User: ${adminQuizResultByUser.getFirstname()}&nbsp;${adminQuizResultByUser.getLastname()}
+                    <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
+                </div>
+            </c:if>
+            <c:if test="${not empty adminQuizResultSortCategory}">
+                <div>
+                    Sorted by category
+                    <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
+                </div>
+            </c:if>
+            <c:if test="${not empty adminQuizResultSortFullname}">
+                <div>
+                    Sorted by full name
+                    <button><a href="/adminQuizResultMgmt">Clear Filter</a></button>
+                </div>
+            </c:if>
+            <div>
+
         <table class="able table-striped table-hover">
             <thead>
                 <th>Taken time</th>
-                <th>Category</th>
-                <th>User Full Name</th>
+                <th><a href="/adminQuizResultMgmt?category=1">Category</a></th>
+                <th><a href="/adminQuizResultMgmt?fullname=1">User Full Name</a></th>
                 <th>Number of Questions</th>
                 <th>Score</th>
                 <th>Details</th>

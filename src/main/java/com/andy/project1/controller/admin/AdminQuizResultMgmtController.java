@@ -8,6 +8,7 @@ import com.andy.project1.service.quiz.QuizService;
 import com.andy.project1.util.Constant;
 import com.andy.project1.util.HttpSessionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -37,9 +40,16 @@ public class AdminQuizResultMgmtController {
             return "redirect:/home";
         }
         HttpSessionHelper.addUserInfoToModel(user, model);
-
-
         List<AdminQuizResult> adminQuizResult = adminQuizResultMgmtService.getAdminQuizResult(params, request, model);
+        if(params.get("category") != null){
+            Collections.sort(adminQuizResult, Comparator.comparing(aq -> aq.getCategory().getName()));
+            model.addAttribute(Constant.ADMIN_QUIZ_RESULT_SORT_CATEGORY, true);
+        }
+        if(params.get("fullname") != null){
+            Collections.sort(adminQuizResult,
+                    Comparator.comparing(aq -> aq.getUser().getFirstname() + " " + aq.getUser().getLastname()));
+            model.addAttribute(Constant.ADMIN_QUIZ_RESULT_SORT_FULLNAME, true);
+        }
         model.addAttribute(Constant.ADMIN_QUIZ_RESULT, adminQuizResult);
         return "adminQuizResultMgmt";
     }
