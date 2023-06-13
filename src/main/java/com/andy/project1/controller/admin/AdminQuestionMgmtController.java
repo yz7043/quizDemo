@@ -21,9 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.StringReader;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -137,5 +135,32 @@ public class AdminQuestionMgmtController {
         BSResult bsResult = adminQuestionMgmtService.doModifyQuestion(allParams);
         System.out.println(bsResult);
         return "redirect:/adminQuestionMgmt";
+    }
+
+    @GetMapping("/adminAddCategory")
+    public String getAdminAddCategory(HttpServletRequest request, Model model){
+        User user = HttpSessionHelper.getSessionUser(request);
+        if(user == null || !user.getIs_admin()){
+            return "redirect:/home";
+        }
+        HttpSessionHelper.addUserInfoToModel(user, model);
+        return "adminAddCategory";
+    }
+
+    @PostMapping("/adminAddCategory")
+    public String postAdminAddCategory(@RequestParam("category") String category,
+                                       @RequestParam("picture") String picture,
+                                       HttpServletRequest request, Model model){
+        User user = HttpSessionHelper.getSessionUser(request);
+        if(user == null || !user.getIs_admin()){
+            return "redirect:/home";
+        }
+        HttpSessionHelper.addUserInfoToModel(user, model);
+        BSResult bsResult = categoryService.addNewCategory(category, picture);
+        if(bsResult.getSuccess()){
+            return "redirect:/adminQuestionMgmt";
+        }
+        model.addAttribute(Constant.ALERT_MSG, bsResult.getMsg());
+        return "adminAddCategory";
     }
 }

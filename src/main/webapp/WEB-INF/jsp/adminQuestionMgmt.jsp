@@ -54,54 +54,62 @@
                 </div>
             </div>
         </div>
-    <%--    <button>Add an Category</button>--%>
-    <div class="col-xl-12 center" style="margin-top: 100px">
-        <h1>Add a question</h1>
-        <div class="center" style="margin-top: 20px">
-            <a href="/adminAddQuestion"  class="btn btn-outline-primary">Add Question</a>
+
+        <div class="col-xl-12 center" style="margin-top: 20px">
+            <h1>Add a category</h1>
+            <div class="center" style="margin-top: 20px">
+                <a href="/adminAddCategory"  class="btn btn-outline-primary">Add Category</a>
+            </div>
         </div>
-    </div>
-    <div class="col-xl-12 center" style="margin-top: 20px">
-        <h1>Question banks</h1>
-        <table class="table table-striped table-hover">
-            <thead>
-                <th>Category</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Edit</th>
-                <th>Toggle</th>
-            </thead>
-        <c:forEach items="${adminQuestionMgmtQuestions}" var="question">
-            <tr>
-                <td>${question.getCategory().getName()}</td>
-                <td>${question.getQuestion().getDescription()}</td>
-                <td>
-                    <c:choose>
-                        <c:when test="${question.getQuestion().getIs_active()}">
-                            <div style="color: green">Active</div>
-                        </c:when>
-                        <c:otherwise>
-                            <div style="color: darkred">Suspended</div>
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-                <td>
-                    <a href="/adminModifyQuestion?question_id=${question.getQuestion().getQuestion_id()}" class="btn btn-outline-primary">Edit</a>
-                </td>
-                <td>
-                    <c:choose>
-                        <c:when test="${question.getQuestion().getIs_active()}">
-                            <a href="/adminQuestionMgmtToggle?question_id=${question.getQuestion().getQuestion_id()}" class="btn btn-outline-danger">Suspend</a>
-                        </c:when>
-                        <c:otherwise>
-                            <a href="/adminQuestionMgmtToggle?question_id=${question.getQuestion().getQuestion_id()}" class="btn btn-outline-success">Enable</a>
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-            </tr>
-        </c:forEach>
-        </table>
-    </div>
+
+        <%--    <button>Add an Category</button>--%>
+        <div class="col-xl-12 center" style="margin-top: 20px">
+            <h1>Add a question</h1>
+            <div class="center" style="margin-top: 20px">
+                <a href="/adminAddQuestion"  class="btn btn-outline-primary">Add Question</a>
+            </div>
+        </div>
+        <div class="col-xl-12 center" style="margin-top: 20px">
+            <h1>Question banks</h1>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Edit</th>
+                    <th>Toggle</th>
+                </thead>
+            <c:forEach items="${adminQuestionMgmtQuestions}" var="question">
+                <tr>
+                    <td>${question.getCategory().getName()}</td>
+                    <td>${question.getQuestion().getDescription()}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${question.getQuestion().getIs_active()}">
+                                <div style="color: green">Active</div>
+                            </c:when>
+                            <c:otherwise>
+                                <div style="color: darkred">Suspended</div>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <a href="/adminModifyQuestion?question_id=${question.getQuestion().getQuestion_id()}" class="btn btn-outline-primary">Edit</a>
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${question.getQuestion().getIs_active()}">
+                                <a href="/adminQuestionMgmtToggle?question_id=${question.getQuestion().getQuestion_id()}" class="btn btn-outline-danger">Suspend</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/adminQuestionMgmtToggle?question_id=${question.getQuestion().getQuestion_id()}" class="btn btn-outline-success">Enable</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                </tr>
+            </c:forEach>
+            </table>
+        </div>
     </div>
 </div>
     <%@ include file="alert.jsp"%>

@@ -43,7 +43,7 @@ public class HomeController {
         if (!user.getIs_admin()){
             // 1. if it isn't admin
                 // 1.1 get all category
-            List<Category> categories =  categoryService.getAllCategory();
+            List<Category> categories =  categoryService.getAllValidCategory();
             model.addAttribute(Constant.ALL_CATEGORIES, categories);
                 // 1.2 get if there is ongoing test
             Quiz ongointQuiz = quizService.getOngoing(user.getUser_id());
