@@ -17,9 +17,12 @@ All has been done
 # Bonus requirements
 1. Add CSS/BootStrap
 2. Display different CSS Styles for answered and unanswered questions
-3. A Countdown timer for the quiz
-4. In the event that the admin changes the correct answer for a question, the corresponding quiz results will also be updated accordingly
-5. Add  a "view" button at the end of each row to allow the admin to view the full contact message by opening a new page to avoid a message content being too long.
+3. In the event that the admin changes the correct answer for a question, the corresponding quiz results will also be updated accordingly
+4. Add  a "view" button at the end of each row to allow the admin to view the full contact message by opening a new page to avoid a message content being too long.
+5. Users are able to click on `User full name` / `Category` to sort quiz results by User Full name / category in alphabetical order
+6. Each question appears on a separate page
+   7. Next and prev button implemented
+   8. Can save the user selection
 
 
 # Some Assumption

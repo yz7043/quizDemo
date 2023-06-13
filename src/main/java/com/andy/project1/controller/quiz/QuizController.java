@@ -5,12 +5,14 @@ import com.andy.project1.domain.Quiz;
 import com.andy.project1.domain.QuizQuestion;
 import com.andy.project1.domain.User;
 import com.andy.project1.domain.util.LoggedUser;
+import com.andy.project1.domain.util.QuizPlus;
 import com.andy.project1.domain.util.QuizQuestionDomain;
 import com.andy.project1.service.category.CategoryService;
 import com.andy.project1.service.quiz.QuizService;
 import com.andy.project1.util.Constant;
 import com.andy.project1.util.HttpSessionHelper;
 import com.andy.project1.util.TimestampHelper;
+import org.apache.tomcat.util.bcel.Const;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,4 +93,50 @@ public class QuizController {
         }
         return "redirect:/home?"+Constant.ALERT_MSG+"=Quiz%20Finished!";
     }
+
+    @GetMapping("quizplus")
+    public String getQuizPlus(@RequestParam("category_id") Integer categoryId, HttpServletRequest request, Model model) {
+        User user = HttpSessionHelper.getSessionUser(request);
+        model.addAttribute(Constant.IS_LOGIN, true);
+        model.addAttribute(Constant.IS_ADMIN, user.getIs_admin());
+        LoggedUser loggedUser = new LoggedUser(user);
+        model.addAttribute(Constant.LOGGED_USER, user);
+        // create quiz question by service
+//        QuizQuestionDomain quizQuestionDomain = quizService.createQuiz(categoryId);
+//        model.addAttribute(Constant.QUIZ_QUESTION, quizQuestionDomain);
+        QuizPlus quizPlus = quizService.getQuizPlus(categoryId);
+        model.addAttribute(Constant.QUIZ_PLUS, quizPlus);
+        Timestamp truncateTimestamp = Timestamp.from(Instant.now().truncatedTo(ChronoUnit.SECONDS));
+        model.addAttribute(Constant.QUIZ_START_TIME, truncateTimestamp);
+        model.addAttribute(Constant.COUNT_DOWN_STR, Constant.COUNT_DOWN);
+        return "quizPlus";
+    }
+    @PostMapping("quizplus")
+    public String postQuizPlus(@RequestParam Map<String, String> params, HttpServletRequest request, Model model){
+        User user = HttpSessionHelper.getSessionUser(request);
+        model.addAttribute(Constant.IS_LOGIN, true);
+        model.addAttribute(Constant.IS_ADMIN, user.getIs_admin());
+        LoggedUser loggedUser = new LoggedUser(user);
+        model.addAttribute(Constant.LOGGED_USER, loggedUser);
+
+        // time stamp
+        Timestamp startTime = Timestamp.valueOf(params.get("startTime"));
+        Timestamp truncateTimestamp = Timestamp.from(startTime.toInstant().truncatedTo(ChronoUnit.SECONDS));
+        model.addAttribute(Constant.QUIZ_START_TIME, truncateTimestamp);
+
+        QuizPlus quizPlus = quizService.finishQuiz(params);
+        String finished = params.get("finished");
+        System.out.println("params");
+        if(finished != null){
+            // submit
+            quizService.submitQuizPlus(params, quizPlus, model, user);
+            return "redirect:/home";
+        }else{
+            // next or prev
+            model.addAttribute(Constant.QUIZ_PLUS, quizPlus);
+            return "quizPlus";
+        }
+    }
+
+
 }

@@ -50,7 +50,7 @@
                     <td><c:choose>
                         <c:when test="${user.getIs_admin()}">Admin</c:when>
                         <c:otherwise>
-                            <button class="btn-outline-secondary"><a href="/adminUserToggleStatus?user_id=${user.getUser_id()}">Toggle</a></button>
+                            <a class="btn btn-outline-secondary" href="/adminUserToggleStatus?user_id=${user.getUser_id()}">Toggle</a>
                         </c:otherwise>
                         </c:choose>
                     </td>

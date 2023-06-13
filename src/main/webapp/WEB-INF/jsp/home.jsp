@@ -33,8 +33,11 @@
             <div class="container">
                 <div class="row row-cols-2">
                     <c:forEach items="${allCategories}" var="categories">
-                        <a href="/quiz?category_id=${categories.getCategory_id()}"
-                        class="col d-flex align-items-center justify-content-center">
+<%--                        <a href="/quiz?category_id=${categories.getCategory_id()}" class="col d-flex align-items-center justify-content-center">--%>
+<%--                            <img src="${categories.getPicture()}" alt="${categories.getName()}" class="category-img border p-3">--%>
+<%--                            <div>${categories.getName()}</div>--%>
+<%--                        </a>--%>
+                        <a href="/quizplus?category_id=${categories.getCategory_id()}" class="col d-flex align-items-center justify-content-center">
                             <img src="${categories.getPicture()}" alt="${categories.getName()}" class="category-img border p-3">
                             <div>${categories.getName()}</div>
                         </a>

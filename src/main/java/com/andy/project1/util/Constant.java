@@ -1,6 +1,5 @@
 package com.andy.project1.util;
 
-import org.springframework.data.relational.core.sql.In;
 
 public class Constant {
     public static final String LOGIN_SESSION_KEY = "user";
@@ -56,4 +55,9 @@ public class Constant {
     public static final String ADMIN_MODIFY_QUESTION = "adminModifyQuestion";
     // Contact detail
     public static final String ADMIN_CONTACT_DETAIL = "adminContactDetail";
+
+    // quiz plust
+    public static final String QUIZ_PLUS = "quizPlus";
+    public static final String COUNT_DOWN_STR = "quizPlusCD";
+    public static final Integer COUNT_DOWN = 30;
 }
